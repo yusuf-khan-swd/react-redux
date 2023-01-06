@@ -1,19 +1,25 @@
-import { createStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const reducer = (state = { counter: 0 }, action) => {
-  if (action.type === "INC") {
-    return { counter: state.counter + 1 };
+const slice = createSlice({
+  name: 'counter',
+  initialState: { counter: 0 },
+  reducers: {
+    increment(state) {
+      state.counter = state.counter + 1;
+    },
+    decrement(state) {
+      state.counter = state.counter - 1;
+    },
+    addBy(state, action) {
+      state.counter = state.counter + action.payload;
+    }
   }
-  if (action.type === "DEC") {
-    return { counter: state.counter - 1 };
-  }
-  if (action.type === "ADD") {
-    return { counter: state.counter + action.payload }
-  }
+});
 
-  return state
-}
+export const actions = slice.actions;
 
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: slice.reducer
+});
 
 export default store;

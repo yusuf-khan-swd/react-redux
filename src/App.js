@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { actions } from './store/store';
 
 
 function App() {
@@ -7,15 +8,15 @@ function App() {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch({ type: "INC" })
+    dispatch(actions.increment());
   };
 
   const handleDecrement = () => {
-    dispatch({ type: "DEC" })
+    dispatch(actions.decrement());
   };
 
   const handleAddBy = () => {
-    dispatch({ type: "ADD", payload: 10 })
+    dispatch(actions.addBy(20));
   };
 
   return (
