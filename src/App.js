@@ -1,29 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { actions } from './store/store';
+
 
 function App() {
   const counter = useSelector(state => state.counter);
   const dispatch = useDispatch();
 
-  const increment = () => {
-    dispatch(actions.increment());
+  const handleIncrement = () => {
+    dispatch({ type: "INC" })
   };
 
-  const decrement = () => {
-    dispatch(actions.decrement());
+  const handleDecrement = () => {
+    dispatch({ type: "DEC" })
   };
 
-  const AddBy = () => {
-    dispatch(actions.addBy(10));
-  }
+  const handleAddBy = () => {
+    dispatch({ type: "ADD", payload: 10 })
+  };
 
   return (
     <div>
-      <h1>{counter}</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-      <button onClick={AddBy}>Add By</button>
+      <h2>{counter}</h2>
+      <button onClick={handleIncrement}>Increment</button>
+      <button onClick={handleDecrement}>Decrement</button>
+      <button onClick={handleAddBy}>Add By</button>
     </div>
   );
 }
